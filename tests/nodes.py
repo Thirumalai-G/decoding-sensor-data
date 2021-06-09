@@ -2,7 +2,6 @@ import ast
 
 from collections import OrderedDict
 
-
 nodes = {
     # mod
     ast.Module: ["body"],
@@ -157,7 +156,6 @@ def convert_node(node):
 
 
 def flatten(d, sep="_"):
-
     obj = OrderedDict()
 
     def recurse(t, parent_key=""):

@@ -29,7 +29,7 @@ class Parser:
         if file_name is not None:
             path = lambda root, fn: root / "{}.py".format(fn)
             # if file_name == "menu" or file_name == "stats":
-                # full_path = path(ext, file_name)
+            # full_path = path(ext, file_name)
             if file_name == "sensor":
                 full_path = path(Path.cwd(), file_name)
             else:
@@ -111,7 +111,7 @@ class Parser:
 
     def assign_(self):
         return Parser(None, [flatten(self.execute("$.body[@.type is 'Assign']").n)])
-    
+
     def def_args_(self, name):
         return Parser(None, [flatten(self.execute("$.body[@.type is 'FunctionDef' and @.name is '{}']".format(
             name

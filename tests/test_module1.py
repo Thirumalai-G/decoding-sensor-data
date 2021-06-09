@@ -1,14 +1,15 @@
 import pytest
 
 try:
-    from sensor.load_data import load_sensor_data 
+    from sensor.load_data import load_sensor_data
+
     recs = load_sensor_data()
 except ImportError:
     recs = 0
 
+
 @pytest.mark.test_load_data_import_module1
 def test_load_data_import_module1(parse):
-
     # import os
     # import glob
     # import csv
@@ -28,7 +29,6 @@ def test_load_data_import_module1(parse):
 
 @pytest.mark.test_load_data_load_sensor_func_module1
 def test_load_data_load_sensor_func_module1(parse):
-
     # def load_sensor_data():
     #     sensor_data = []
 
@@ -55,7 +55,6 @@ def test_load_data_load_sensor_func_module1(parse):
 
 @pytest.mark.test_load_data_sensor_files_module1
 def test_load_data_sensor_files_module1(parse):
-
     #   ....
     #   sensor_files = glob.glob(os.path.join(os.getcwd(), 'datasets', '*.csv'))
 
@@ -71,7 +70,7 @@ def test_load_data_sensor_files_module1(parse):
 
     sensor_files = (
         load_sensor_data.assign_()
-        .match(
+            .match(
             {
                 "1_type": "Assign",
                 "1_targets_0_type": "Name",
@@ -102,7 +101,7 @@ def test_load_data_sensor_files_module1(parse):
                 "1_value_args_0_args_2_value": "*.csv"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         sensor_files
@@ -111,7 +110,6 @@ def test_load_data_sensor_files_module1(parse):
 
 @pytest.mark.test_load_data_read_files_module1
 def test_load_data_read_files_module1(parse):
-
     #   ....
     # for sensor_file in sensor_files:
     #     with open(sensor_file) as data_file:
@@ -128,7 +126,7 @@ def test_load_data_read_files_module1(parse):
 
     first_for_exists = (
         load_sensor_data.for_()
-        .match(
+            .match(
             {
                 "target_type": "Name",
                 "target_id": "sensor_file",
@@ -136,7 +134,7 @@ def test_load_data_read_files_module1(parse):
                 "iter_id": "sensor_files",
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         first_for_exists
@@ -144,7 +142,7 @@ def test_load_data_read_files_module1(parse):
 
     with_exists = (
         load_sensor_data.for_()
-        .match(
+            .match(
             {
                 "0_type": "With",
                 "0_items_0_type": "withitem",
@@ -157,7 +155,7 @@ def test_load_data_read_files_module1(parse):
                 "0_items_0_optional_vars_id": "data_file"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         with_exists
@@ -165,7 +163,7 @@ def test_load_data_read_files_module1(parse):
 
     data_reader = (
         load_sensor_data.for_()
-        .match(
+            .match(
             {
                 "0_body_0_type": "Assign",
                 "0_body_0_targets_0_type": "Name",
@@ -183,17 +181,15 @@ def test_load_data_read_files_module1(parse):
                 "0_body_0_value_keywords_0_value_value": ",",
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         data_reader
     ), "Are you assigning `data_reader` the result of `csv.DictReader()` with the correct input argument and delimeter?"
 
 
-
 @pytest.mark.test_load_data_load_recs_module1
 def test_load_data_load_recs_module1(parse):
-
     # def load_sensor_data():
     #   ....
     #         for row in data_reader:
@@ -208,10 +204,9 @@ def test_load_data_load_recs_module1(parse):
         load_sensor_data.exists()
     ), "Are you defining a function called `load_sensor_data` with the correct arguments?"
 
-
     first_for_exists = (
         load_sensor_data.for_()
-        .match(
+            .match(
             {
                 "target_type": "Name",
                 "target_id": "sensor_file",
@@ -219,7 +214,7 @@ def test_load_data_load_recs_module1(parse):
                 "iter_id": "sensor_files",
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         first_for_exists
@@ -227,7 +222,7 @@ def test_load_data_load_recs_module1(parse):
 
     with_exists = (
         load_sensor_data.for_()
-        .match(
+            .match(
             {
                 "0_type": "With",
                 "0_items_0_type": "withitem",
@@ -240,7 +235,7 @@ def test_load_data_load_recs_module1(parse):
                 "0_items_0_optional_vars_id": "data_file"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         with_exists
@@ -248,7 +243,7 @@ def test_load_data_load_recs_module1(parse):
 
     data_reader = (
         load_sensor_data.for_()
-        .match(
+            .match(
             {
                 "0_body_0_type": "Assign",
                 "0_body_0_targets_0_type": "Name",
@@ -266,7 +261,7 @@ def test_load_data_load_recs_module1(parse):
                 "0_body_0_value_keywords_0_value_value": ",",
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         data_reader
@@ -274,7 +269,7 @@ def test_load_data_load_recs_module1(parse):
 
     second_for_exist = (
         load_sensor_data.for_()
-        .match(
+            .match(
             {
                 "0_body_1_type": "For",
                 "0_body_1_target_type": "Name",
@@ -283,7 +278,7 @@ def test_load_data_load_recs_module1(parse):
                 "0_body_1_iter_id": "data_reader",
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         second_for_exist
@@ -293,7 +288,7 @@ def test_load_data_load_recs_module1(parse):
 
     sensor_data_append = (
         load_sensor_data.for_()
-        .match(
+            .match(
             {
                 "0_body_1_body_0_type": "Expr",
                 "0_body_1_body_0_value_type": "Call",
@@ -305,7 +300,7 @@ def test_load_data_load_recs_module1(parse):
                 "0_body_1_body_0_value_args_0_id": "row"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         sensor_data_append
@@ -319,10 +314,9 @@ def test_load_data_load_recs_module1(parse):
     # Test Length of return value
     # recs = load_sensor_data() # this is defined above
     assert (
-        len(recs) == 2000
+            len(recs) == 2000
     ), """The length of your sensor_data list is incorrect. 
         Are you scanning both data files?"""
-
 
 
 @pytest.mark.test_sensor_app_load_data_return_module1
@@ -335,7 +329,7 @@ def test_sensor_app_load_data_return_module1(parse):
 
     sensor = parse("sensor_app")
     assert sensor.success, sensor.message
-    
+
     original_data = (
         sensor.assign_().match(
             {
@@ -345,7 +339,7 @@ def test_sensor_app_load_data_return_module1(parse):
                 "0_value_type": "List",
             }
         )
-    .exists()
+            .exists()
     )
     assert (
         original_data
@@ -354,7 +348,7 @@ def test_sensor_app_load_data_return_module1(parse):
         data = []        
         print("Sensor Data App")
         """
-    
+
     print_app = (
         sensor.calls().match(
             {
@@ -366,7 +360,7 @@ def test_sensor_app_load_data_return_module1(parse):
                 "value_args_0_value": "Sensor Data App"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         print_app
@@ -375,11 +369,10 @@ def test_sensor_app_load_data_return_module1(parse):
         data = []            
         print("Sensor Data App")"""
 
-
     ######################################################
     # Now we can test the actual module
     ######################################################
-    
+
     # from load_data import load_sensor_data
     # data = load_sensor_data()
     # print("Loaded records {}".format(len(data)))
@@ -399,7 +392,7 @@ def test_sensor_app_load_data_return_module1(parse):
                 "1_value_func_id": "load_sensor_data",
             }
         )
-    .exists()
+            .exists()
     )
     assert (
         data

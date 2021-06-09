@@ -19,7 +19,7 @@ def test_humidity_create_class_module4(parse):
     my_file_import = my_file.from_imports(
         "house_info", "HouseInfo")
     assert my_file_import, "Are you importing `HouseInfo` from `house_info` in `{}` file".format(test_file)
-    
+
     my_class = my_file.query("class {0}({1}): ??".format(test_class, parent_class))
     assert (
         my_class.exists()
@@ -30,9 +30,9 @@ def test_humidity_create_class_module4(parse):
     assert (
         my_method.exists()
     ), "Are you defining a method called `{}`?".format(test_method)
-    
+
     # debug_test_case(my_method) 
-    
+
     my_class_arguments = (
         my_class.def_args_(test_method).match(
             {
@@ -49,13 +49,13 @@ def test_humidity_create_class_module4(parse):
                 "args_kwarg": "nil",
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         my_class_arguments
     ), """Are you defining a method `{0}` for the `{1}` class?
         Are you declaring the correct name and number of parameters?""".format(test_method, test_class)
-    
+
     # Check for assignment 
     test_code = (
         my_method.assign_().match(
@@ -65,12 +65,12 @@ def test_humidity_create_class_module4(parse):
                 "value_type": "List"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
     ), "Are you creating a variable called `recs` set equal to an empty list?"
-    
+
 
 @pytest.mark.test_humidity_convert_loop_module4
 def test_humidity_convert_loop_module4(parse):
@@ -83,7 +83,7 @@ def test_humidity_convert_loop_module4(parse):
     parent_class = "HouseInfo"
     test_class = "HumidityData"
     test_method = "_convert_data"
-   
+
     my_file = parse(test_file)
     assert my_file.success, my_file.message
 
@@ -97,7 +97,7 @@ def test_humidity_convert_loop_module4(parse):
     assert (
         my_method.exists()
     ), "Are you defining a method called `{}`?".format(test_method)
-    
+
     # debug_test_case(my_method) 
 
     test_code = (
@@ -109,7 +109,7 @@ def test_humidity_convert_loop_module4(parse):
                 "iter_id": "data"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
@@ -136,15 +136,15 @@ def test_humidity_convert_loop_module4(parse):
                 "0_value_args_0_right_value": 100
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
     ), """Inside your loop, are you converting `rec` value to `float()` and multiplying it by `100`?
 
         Are you appending it to `recs` list?"""
-    
-    test_code= (
+
+    test_code = (
         my_method.returns_call().match(
             {
                 "type": "Return",
@@ -152,7 +152,7 @@ def test_humidity_convert_loop_module4(parse):
                 "value_id": "recs"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
@@ -164,12 +164,12 @@ def test_humidity_by_area_method_module4(parse):
     # def get_data_by_area(self, rec_area=0):
     #     data = super().get_data_by_area("humidity", rec_area)
     #     return self._convert_data(recs)
-    
+
     test_file = "humidity_info"
     parent_class = "HouseInfo"
     test_class = "HumidityData"
     test_method = "get_data_by_area"
-    
+
     my_file = parse(test_file)
     assert my_file.success, my_file.message
 
@@ -180,12 +180,12 @@ def test_humidity_by_area_method_module4(parse):
         Is your class inheritings the properties of the `{1}` class?""".format(test_class, parent_class)
 
     # debug_test_case_class(my_class, test_method) 
-    
+
     my_method = my_file.class_(test_class).method(test_method)
     assert (
         my_method.exists()
     ), "Are you defining a method called `{}`?".format(test_method)
-    
+
     # debug_test_case(my_method) 
 
     my_class_arguments = (
@@ -206,7 +206,7 @@ def test_humidity_by_area_method_module4(parse):
                 "args_defaults_0_value": 0,
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         my_class_arguments
@@ -231,7 +231,7 @@ def test_humidity_by_area_method_module4(parse):
                 "value_args_1_id": "rec_area"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
@@ -253,7 +253,7 @@ def test_humidity_by_area_method_module4(parse):
                 "value_args_0_id": "recs"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
@@ -268,19 +268,19 @@ def test_humidity_by_date_method_module4(parse):
     # def get_data_by_date(self, rec_date=date.today()):
     #     recs = super().get_data_by_date("humidity", rec_date)
     #     return self._convert_data(recs)
-    
+
     test_file = "humidity_info"
     parent_class = "HouseInfo"
     test_class = "HumidityData"
     test_method = "get_data_by_date"
-    
+
     my_file = parse(test_file)
     assert my_file.success, my_file.message
 
     my_file_import = my_file.from_imports(
         "datetime", "date")
     assert my_file_import, "Are you importing `date` from datetime in `{}`".format(test_file)
-    
+
     my_class = my_file.query("class {0}({1}): ??".format(test_class, parent_class))
     assert (
         my_class.exists()
@@ -288,12 +288,12 @@ def test_humidity_by_date_method_module4(parse):
         Is your class inheritings the properties of the `{1}` class?""".format(test_class, parent_class)
 
     # debug_test_case_class(my_class, test_method) 
-    
+
     my_method = my_file.class_(test_class).method(test_method)
     assert (
         my_method.exists()
     ), "Are you defining a method called `{}`?".format(test_method)
-    
+
     # debug_test_case(my_method) 
 
     my_class_arguments = (
@@ -317,7 +317,7 @@ def test_humidity_by_date_method_module4(parse):
                 "args_defaults_0_func_attr": "today",
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         my_class_arguments
@@ -342,7 +342,7 @@ def test_humidity_by_date_method_module4(parse):
                 "value_args_1_id": "rec_date"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
@@ -364,7 +364,7 @@ def test_humidity_by_date_method_module4(parse):
                 "value_args_0_id": "recs"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
@@ -385,14 +385,14 @@ def test_sensor_app_temp_info_by_area_module4(parse):
 
     test_file = "sensor_app"
     test_class = "HumidityData"
-    
+
     my_file = parse(test_file)
     assert my_file.success, my_file.message
 
     my_file_import = my_file.from_imports(
         "humidity_info", "HumidityData")
     assert my_file_import, "Are you importing `HumidityData` from `humidity_info` in `{}`".format(test_file)
-    
+
     # debug_test_case(my_file)    
 
     test_code = (
@@ -408,14 +408,14 @@ def test_sensor_app_temp_info_by_area_module4(parse):
                 "10_value_args_0_id": "data",
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
     ), """Are you creating an instance of the '{}' class called `humidity_data`?
         Are you passing `data` as the initialization argument for the constructor?
         """.format(test_class)
-    
+
     test_code = (
         my_file.assign_().match(
             {
@@ -433,7 +433,7 @@ def test_sensor_app_temp_info_by_area_module4(parse):
                 "11_value_keywords_0_value_id": "test_area",
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
@@ -455,12 +455,12 @@ def test_sensor_app_temp_info_by_date_module4(parse):
 
     test_file = "sensor_app"
     test_class = "HumidityData"
-    
+
     my_file = parse(test_file)
     assert my_file.success, my_file.message
 
     # debug_test_case(my_file)    
-    
+
     test_code = (
         my_file.assign_().match(
             {
@@ -478,7 +478,7 @@ def test_sensor_app_temp_info_by_date_module4(parse):
                 "12_value_keywords_0_value_id": "test_date",
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
@@ -505,7 +505,7 @@ def test_particle_create_class_module4(parse):
     my_file_import = my_file.from_imports(
         "house_info", "HouseInfo")
     assert my_file_import, "Are you importing `HouseInfo` from `house_info` in `{}` file".format(test_file)
-    
+
     my_class = my_file.query("class {0}({1}): ??".format(test_class, parent_class))
     assert (
         my_class.exists()
@@ -516,9 +516,9 @@ def test_particle_create_class_module4(parse):
     assert (
         my_method.exists()
     ), "Are you defining a method called `{}`?".format(test_method)
-    
+
     # debug_test_case(my_method) 
-    
+
     my_class_arguments = (
         my_class.def_args_(test_method).match(
             {
@@ -535,13 +535,13 @@ def test_particle_create_class_module4(parse):
                 "args_kwarg": "nil",
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         my_class_arguments
     ), """Are you defining a method `{0}` for the `{1}` class?
         Are you declaring the correct name and number of parameters?""".format(test_method, test_class)
-    
+
     # Check for assignment 
     test_code = (
         my_method.assign_().match(
@@ -551,12 +551,12 @@ def test_particle_create_class_module4(parse):
                 "value_type": "List"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
     ), "Are you creating a variable called `recs` set equal to an empty list?"
-    
+
 
 @pytest.mark.test_particle_convert_loop_module4
 def test_particle_convert_loop_module4(parse):
@@ -569,7 +569,7 @@ def test_particle_convert_loop_module4(parse):
     parent_class = "HouseInfo"
     test_class = "ParticleData"
     test_method = "_convert_data"
-   
+
     my_file = parse(test_file)
     assert my_file.success, my_file.message
 
@@ -583,7 +583,7 @@ def test_particle_convert_loop_module4(parse):
     assert (
         my_method.exists()
     ), "Are you defining a method called `{}`?".format(test_method)
-    
+
     # debug_test_case(my_method) 
 
     test_code = (
@@ -595,7 +595,7 @@ def test_particle_convert_loop_module4(parse):
                 "iter_id": "data"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
@@ -618,14 +618,14 @@ def test_particle_convert_loop_module4(parse):
                 "0_value_args_0_args_0_id": "rec"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
     ), """Inside your loop, are you converting `rec` value to `float()`
         Are you appending it to `recs` list?"""
-    
-    test_code= (
+
+    test_code = (
         my_method.returns_call().match(
             {
                 "type": "Return",
@@ -633,7 +633,7 @@ def test_particle_convert_loop_module4(parse):
                 "value_id": "recs"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
@@ -650,12 +650,12 @@ def test_particle_by_area_and_date_methods_module4(parse):
     # def get_data_by_date(self, rec_date=date.today()):
     #     recs = super().get_data_by_date("particle", rec_date)
     #     return self._convert_data(recs)
-    
+
     test_file = "particle_count_info"
     parent_class = "HouseInfo"
     test_class = "ParticleData"
     test_method = "get_data_by_area"
-    
+
     my_file = parse(test_file)
     assert my_file.success, my_file.message
 
@@ -666,12 +666,12 @@ def test_particle_by_area_and_date_methods_module4(parse):
         Is your class inheritings the properties of the `{1}` class?""".format(test_class, parent_class)
 
     # debug_test_case_class(my_class, test_method) 
-    
+
     my_method = my_file.class_(test_class).method(test_method)
     assert (
         my_method.exists()
     ), "Are you defining a method called `{}`?".format(test_method)
-    
+
     # debug_test_case(my_method) 
 
     my_class_arguments = (
@@ -692,7 +692,7 @@ def test_particle_by_area_and_date_methods_module4(parse):
                 "args_defaults_0_value": 0,
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         my_class_arguments
@@ -717,7 +717,7 @@ def test_particle_by_area_and_date_methods_module4(parse):
                 "value_args_1_id": "rec_area"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
@@ -739,7 +739,7 @@ def test_particle_by_area_and_date_methods_module4(parse):
                 "value_args_0_id": "recs"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
@@ -749,11 +749,11 @@ def test_particle_by_area_and_date_methods_module4(parse):
 
     # Now test the get_data_by_date method
     test_method = "get_data_by_date"
-    
+
     my_file_import = my_file.from_imports(
         "datetime", "date")
     assert my_file_import, "Are you importing `date` from datetime in `{}`".format(test_file)
-    
+
     my_class = my_file.query("class {0}({1}): ??".format(test_class, parent_class))
     assert (
         my_class.exists()
@@ -764,7 +764,7 @@ def test_particle_by_area_and_date_methods_module4(parse):
     assert (
         my_method.exists()
     ), "Are you defining a method called `{}`?".format(test_method)
-    
+
     my_class_arguments = (
         my_class.def_args_(test_method).match(
             {
@@ -786,7 +786,7 @@ def test_particle_by_area_and_date_methods_module4(parse):
                 "args_defaults_0_func_attr": "today",
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         my_class_arguments
@@ -811,7 +811,7 @@ def test_particle_by_area_and_date_methods_module4(parse):
                 "value_args_1_id": "rec_date"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
@@ -833,7 +833,7 @@ def test_particle_by_area_and_date_methods_module4(parse):
                 "value_args_0_id": "recs"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
@@ -865,10 +865,10 @@ def test_particle_get_concentration_method_module4(parse):
     assert (
         my_method.exists()
     ), "Are you defining a method called `{}`?".format(test_method)
-    
+
     # debug_test_case_class(my_class, test_method)  
     # debug_test_case(my_method)  
-    
+
     my_class_arguments = (
         my_class.def_args_(test_method).match(
             {
@@ -885,13 +885,13 @@ def test_particle_get_concentration_method_module4(parse):
                 "args_kwarg": "nil",
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         my_class_arguments
     ), """Are you defining a method `{0}` for the `{1}` class?
         Are you declaring the correct name and number of parameters?""".format(test_method, test_class)
-    
+
     # Check for assignment 
     test_code = (
         my_method.assign_().match(
@@ -914,7 +914,7 @@ def test_particle_get_concentration_method_module4(parse):
                 "value_values_2_value": 0
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
@@ -922,19 +922,19 @@ def test_particle_get_concentration_method_module4(parse):
         Are you initializing it with three entries?
         "good", "moderate", and "bad", all set equal to zero?"""
 
-    
+
 @pytest.mark.test_particle_get_concentration_for_module4
 def test_particle_get_concentration_for_module4(parse):
-        # for rec in data:
-        #     # Select particulate concentration
-        #     if rec <= 50.0:
-        #         particulate["good"] += 1
-        #     elif rec > 50.0 and rec <= 100:
-        #         particulate["moderate"] += 1
-        #     else:
-        #         particulate["bad"] += 1
+    # for rec in data:
+    #     # Select particulate concentration
+    #     if rec <= 50.0:
+    #         particulate["good"] += 1
+    #     elif rec > 50.0 and rec <= 100:
+    #         particulate["moderate"] += 1
+    #     else:
+    #         particulate["bad"] += 1
 
-        # return particulate
+    # return particulate
 
     test_file = "particle_count_info"
     parent_class = "HouseInfo"
@@ -954,9 +954,9 @@ def test_particle_get_concentration_for_module4(parse):
     assert (
         my_method.exists()
     ), "Are you defining a method called `{}`?".format(test_method)
-    
+
     # debug_test_case(my_method)  
-    
+
     # Check for assignment 
     test_code = (
         my_method.for_().match(
@@ -967,7 +967,7 @@ def test_particle_get_concentration_for_module4(parse):
                 "iter_id": "data"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
@@ -982,12 +982,12 @@ def test_particle_get_concentration_for_module4(parse):
                 "value_id": "particulate"
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
     ), """Are you returning `particulate` from the method?"""
-    
+
 
 @pytest.mark.test_sensor_app_particle_info_by_area_module4
 def test_sensor_app_particle_info_by_area_module4(parse):
@@ -1003,7 +1003,7 @@ def test_sensor_app_particle_info_by_area_module4(parse):
 
     test_file = "sensor_app"
     test_class = "ParticleData"
-    
+
     my_file = parse(test_file)
     assert my_file.success, my_file.message
 
@@ -1026,14 +1026,14 @@ def test_sensor_app_particle_info_by_area_module4(parse):
                 "13_value_args_0_id": "data",
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
     ), """Are you creating an instance of the '{}' class called `particle_data`?
         Are you passing `data` as the initialization argument for the constructor?
         """.format(test_class)
-    
+
     test_code = (
         my_file.assign_().match(
             {
@@ -1051,14 +1051,14 @@ def test_sensor_app_particle_info_by_area_module4(parse):
                 "14_value_keywords_0_value_id": "test_area",
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
     ), """Are you setting `recs` to the method call `get_data_by_area` from the `particle_data` object?
         Are you passing `rec_area=test_area` as the only argument to the method?
         """
-    
+
     test_code = (
         my_file.assign_().match(
             {
@@ -1076,7 +1076,7 @@ def test_sensor_app_particle_info_by_area_module4(parse):
                 "15_value_keywords_0_value_id": "recs",
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
@@ -1098,7 +1098,7 @@ def test_sensor_app_particle_info_by_date_module4(parse):
 
     test_file = "sensor_app"
     test_class = "ParticleData"
-    
+
     my_file = parse(test_file)
     assert my_file.success, my_file.message
 
@@ -1121,7 +1121,7 @@ def test_sensor_app_particle_info_by_date_module4(parse):
                 "16_value_keywords_0_value_id": "test_date",
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code
@@ -1146,7 +1146,7 @@ def test_sensor_app_particle_info_by_date_module4(parse):
                 "17_value_keywords_0_value_id": "recs",
             }
         )
-        .exists()
+            .exists()
     )
     assert (
         test_code

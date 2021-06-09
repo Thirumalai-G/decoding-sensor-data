@@ -16,7 +16,7 @@ class Template(object):
         nodes = []
         for node in ast.walk(tree):
             if isinstance(node, type(self.pattern)) and is_ast_equal(
-                node, self.pattern
+                    node, self.pattern
             ):
                 if not raw:
                     nodes.append(convert_node(node))
@@ -52,7 +52,6 @@ class Template(object):
 
 
 class TemplateTransformer(ast.NodeTransformer):
-
     __WILDCARD_NAME = "__past_wildcard"
     __MULTIWILDCARD_NAME = "__past_multiwildcard"
 
@@ -88,8 +87,8 @@ class TemplateTransformer(ast.NodeTransformer):
 
     def transform_wildcard(self, node, attrname):
         if getattr(node, attrname, None) in (
-            self.__WILDCARD_NAME,
-            self.__MULTIWILDCARD_NAME,
+                self.__WILDCARD_NAME,
+                self.__MULTIWILDCARD_NAME,
         ):
             setattr(node, attrname, self.must_exist)
 
@@ -130,9 +129,9 @@ class TemplateTransformer(ast.NodeTransformer):
                     positional_final_wildcard = True
 
                 args = (
-                    self.visit_list(node.args[:i])
-                    + Middle()
-                    + self.visit_list(node.args[i + 1:])
+                        self.visit_list(node.args[:i])
+                        + Middle()
+                        + self.visit_list(node.args[i + 1:])
                 )
                 break
         else:
@@ -162,9 +161,9 @@ class TemplateTransformer(ast.NodeTransformer):
         ]
 
         koa_subset = (
-            positional_final_wildcard and vararg is None and (
-                not node.kwonlyargs)
-        ) or any(a.arg == self.__MULTIWILDCARD_NAME for a in node.kwonlyargs)
+                             positional_final_wildcard and vararg is None and (
+                         not node.kwonlyargs)
+                     ) or any(a.arg == self.__MULTIWILDCARD_NAME for a in node.kwonlyargs)
 
         if node.kwarg is None:
             if koa_subset:
@@ -217,15 +216,15 @@ class TemplateTransformer(ast.NodeTransformer):
                     kwargs_are_subset = True
 
                 node.args = (
-                    self.visit_list(node.args[:i])
-                    + Middle()
-                    + self.visit_list(node.args[i + 1:])
+                        self.visit_list(node.args[:i])
+                        + Middle()
+                        + self.visit_list(node.args[i + 1:])
                 )
 
                 break
 
         if kwargs_are_subset or any(
-            k.arg == self.__MULTIWILDCARD_NAME for k in node.keywords
+                k.arg == self.__MULTIWILDCARD_NAME for k in node.keywords
         ):
             template_keywords = [
                 self.visit(k)
@@ -481,7 +480,7 @@ class DefArgsCheck:
                 if template_dflt is not None:
                     assert_ast_equal(
                         sample_dflt, template_dflt, path +
-                        ["kw_defaults", argname]
+                                                    ["kw_defaults", argname]
                     )
 
         if not self.koa_subset:
@@ -512,7 +511,7 @@ def check_node_list(path, sample, template, start_enumerate=0):
         raise TemplateNodeListMismatch(path, sample, template)
 
     for i, (sample_node, template_node) in enumerate(
-        zip(sample, template), start=start_enumerate
+            zip(sample, template), start=start_enumerate
     ):
         if callable(template_node):
             template_node(sample_node, path + [i])
@@ -536,8 +535,8 @@ def assert_ast_equal(sample, template, path=None):
 
         if isinstance(template_field, list):
             if template_field and (
-                isinstance(template_field[0], ast.AST) or callable(
-                    template_field[0])
+                    isinstance(template_field[0], ast.AST) or callable(
+                template_field[0])
             ):
                 check_node_list(field_path, sample_field, template_field)
             else:
@@ -572,8 +571,8 @@ def debug_test_case(node):
     Arguments:
         node {[type]} -- [description]
     """
-    print(json.dumps(node.assign_().n, indent=4)) 
-    print(json.dumps(node.for_().n, indent=4)) 
+    print(json.dumps(node.assign_().n, indent=4))
+    print(json.dumps(node.for_().n, indent=4))
     print(json.dumps(node.returns_call().n, indent=4))
 
 
