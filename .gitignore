@@ -75,3 +75,4 @@ venv38/
 
 # Datasets
 sensor/datasets/
+/tests/

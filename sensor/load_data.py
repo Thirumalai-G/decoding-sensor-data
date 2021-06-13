@@ -2,6 +2,12 @@ import csv
 import glob
 import os
 
+'''
+Loads Data Files from the /datasets directory
+Reads all the data into a list.
+:@returns sensor_data
+'''
+
 
 def load_sensor_data():
     sensor_data = []
