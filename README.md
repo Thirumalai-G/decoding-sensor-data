@@ -1,21 +1,16 @@
 # Decoding Sensor Data with Python
 
-- [Decoding Sensor Data with Python](#decoding-sensor-data-with-python)
-    - [Status](#status)
-    - [Overview](#overview)
-    - [Installation](#installation)
-        - [Verify Local Environment](#verify-local-environment)
-        - [Windows](#windows)
-        - [macOS](#macos)
-        - [About pip](#about-pip)
-    - [Verify Setup](#verify-setup)
-    - [Previewing Your Work](#previewing-your-work)
-
-## Status
-
-This is a **Draft**.
+- [Overview](#overview)
+- [Installation](#installation)
+  - [Verify Local Environment](#verify-local-environment)
+  - [Windows](#windows)
+  - [macOS](#macos)
+  - [About pip](#about-pip)
+- [Viewing the Analysis](#viewing-the-analysis)
 
 ## Overview
+
+An Analysis of the Home Sensor Data and to extract insights like Temperature,Humidity,Air Quality Content and Energy Usage of the Building from the recorded observations.
 
 ## Installation
 
@@ -52,21 +47,9 @@ command instead of `python3`.*
 
 `pip` updates frequently, but versions greater than 10.x.x should work with this project.
 
-## Verify Setup
+## Viewing the Analysis
 
-In order to verify that everything is setup correctly, run the following command from the project root.
+The analysis can be previewed by opening a terminal, changing to the project root, activating the virtual environment, and
+executing the below python script, which in turn displays the predefined analysis done in your console.
 
-```bash
-pytest
-```
-
-You should see that all the tests are failing. This is good! We’ll be fixing these tests once we jump into the build
-step.
-
-Every time you want to check your work locally you can type that command, and it will report the status of every task in
-the project.
-
-## Previewing Your Work
-
-You can preview your work by opening a terminal, changing to the project root, activating the virtual environment, and
-executing the appropriate python script. For example `python sensor/sensor.py`.
+`python sensor/sensor.py`
