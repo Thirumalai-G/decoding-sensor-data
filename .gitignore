@@ -72,7 +72,3 @@ venv36/
 venv37/
 venv38/
 .venv/
-
-# Datasets
-sensor/datasets/
-/tests/
