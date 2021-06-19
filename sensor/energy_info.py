@@ -35,6 +35,11 @@ class EnergyData(HouseInfo):
         recs = super().get_data_by_date("energy_usage", rec_date)
         return self._convert_data(recs)
 
+    '''
+    The below Util Methods (_get_energy,_convert_data) converts energy usage 
+    from hexadecimal to numeric
+    '''
+
     def _get_energy(self, rec):
         energy = int(rec, base=16)
         energy = energy * self.ENERGY_BITS
@@ -46,6 +51,11 @@ class EnergyData(HouseInfo):
         for rec in data:
             recs.append(self._get_energy(rec))
         return recs
+
+    '''
+    The below method calculates total energy usage provided energy consumed per
+    bulb. 
+    '''
 
     def calculate_energy_usage(self, data):
         total_energy = sum([field * self.ENERGY_PER_BULB for field in data])
